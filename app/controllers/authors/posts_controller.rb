@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @posts = current_author.posts.build
+    @post = current_author.posts.build
   end
 
   # GET /posts/1/edit
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = @posts = current_author.posts.build(post_params)
+    @post = current_author.posts.build(post_params)
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :published, :published_at)
+      params.require(:post).permit(:title, :description)
     end
     
   end
