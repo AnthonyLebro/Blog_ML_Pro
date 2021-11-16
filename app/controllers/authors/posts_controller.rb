@@ -1,3 +1,5 @@
+module Authors
+
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -55,4 +57,6 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :description, :published, :published_at, :author_id)
     end
+    
+  end
 end
