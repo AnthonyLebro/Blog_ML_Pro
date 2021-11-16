@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = current_author.posts
   end
 
   # GET /posts/1
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @posts = current_author.posts.build
   end
 
   # GET /posts/1/edit
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = @posts = current_author.posts.build(post_params)
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
@@ -50,12 +50,12 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = current_author.posts.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :published, :published_at, :author_id)
+      params.require(:post).permit(:title, :description, :published, :published_at)
     end
     
   end
