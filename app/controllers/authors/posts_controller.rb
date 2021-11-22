@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @paragraph = @post.elements.build(element_type: 'paragraph')
   end
 
   # POST /posts
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1
+  # PATCH/PUT /posts/1 
   def update
     if @post.update(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
