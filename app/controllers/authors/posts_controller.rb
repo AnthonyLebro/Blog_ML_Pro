@@ -8,6 +8,10 @@ class PostsController < ApplicationController
     @posts = current_author.posts
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+  
   # GET /posts/new
   def new
     @post = current_author.posts.build
